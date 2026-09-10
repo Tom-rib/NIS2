@@ -1,0 +1,39 @@
+{
+  "//": "Copie ce fichier vers hosts.json (gitignoré) et adapte-le. NE COMMITE JAMAIS hosts.json.",
+  "//secrets": "Mots de passe via variable d'env (passwordEnv). Clés via chemin (privateKeyPath). Jamais de secret en clair ici.",
+
+  "hosts": {
+    "staging-web": {
+      "host": "203.0.113.10",
+      "port": 22,
+      "user": "deploy",
+      "environment": "staging",
+      "readOnly": false,
+      "auth": {
+        "type": "key",
+        "privateKeyPath": "~/.ssh/id_ed25519",
+        "passphraseEnv": "STAGING_WEB_KEY_PASSPHRASE"
+      }
+    },
+
+    "prod-web": {
+      "host": "198.51.100.20",
+      "port": 22,
+      "user": "deploy",
+      "environment": "prod",
+      "readOnly": true,
+      "auth": {
+        "type": "password",
+        "passwordEnv": "PROD_WEB_PASSWORD"
+      }
+    }
+  },
+
+  "guardrails": {
+    "//": "Ces listes S'AJOUTENT aux garde-fous par défaut (elles ne les remplacent pas).",
+    "requireConfirmForProd": true,
+    "commandTimeoutMs": 120000,
+    "blockedPatterns": ["\\bpg_dropcluster\\b"],
+    "sensitivePatterns": ["\\bmy-migration-script\\b"]
+  }
+}

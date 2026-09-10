@@ -1,0 +1,21 @@
+{
+  "name": "mcp-ssh-admin",
+  "version": "0.1.0",
+  "description": "Serveur MCP d'administration de serveurs distants via SSH (clé ou mot de passe) avec garde-fous configurables.",
+  "type": "module",
+  "bin": {
+    "mcp-ssh-admin": "./server.js"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "check-config": "node server.js --check-config"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.10.0",
+    "ssh2": "^1.15.0",
+    "zod": "^3.23.8"
+  }
+}

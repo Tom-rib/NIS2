@@ -1,0 +1,42 @@
+# Secrets — JAMAIS commités
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets/
+credentials.json
+
+# MCP ssh-admin : config réelle (contient les cibles/refs de secrets) et audit
+.claude/mcp/ssh-admin/hosts.json
+.claude/mcp/ssh-admin/ssh-mcp-audit.log
+
+# Dépendances
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+vendor/
+
+# Build / sorties
+dist/
+build/
+out/
+target/
+*.log
+
+# Graphify : sorties régénérables (graphe, cache SHA256, vault Obsidian)
+graphify-out/
+
+# Mémoire de travail locale (la session courante — pas l'historique partagé)
+.claude/memory/session-*.md
+scratchpad/
+
+# OS / éditeurs
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp

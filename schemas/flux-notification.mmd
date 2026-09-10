@@ -1,0 +1,29 @@
+flowchart TB
+    D["DETECTION<br/>Noter l'heure = T0"]
+    Q{"Incident IMPORTANT ?<br/>art. 23(3)"}
+    NON["Consigner au registre<br/>art. 21(2)(b)"]
+    VOL{"Doute ?"}
+    A24["ALERTE PRECOCE<br/>sous 24 h<br/>art. 23(4)(a)"]
+    REP["Reponse du CSIRT<br/>sous 24 h<br/>art. 23(5)"]
+    N72["NOTIFICATION<br/>sous 72 h<br/>art. 23(4)(b)"]
+    USA["Information des usagers<br/>art. 23(1)"]
+    CNIL["Notification CNIL<br/>72 h - art. 33 RGPD"]
+    ENC{"Incident<br/>toujours en cours ?"}
+    AVA["RAPPORT D'AVANCEMENT<br/>art. 23(4)(e)"]
+    FIN["RAPPORT FINAL<br/>1 mois APRES LA NOTIF 72 h<br/>art. 23(4)(d)"]
+    REX["Retour d'experience<br/>art. 21(2)(f) et 21(4)"]
+
+    D --> Q
+    Q -->|Non| VOL
+    VOL -->|Oui| A24
+    VOL -->|Non| NON
+    Q -->|Oui| A24
+    A24 --> REP
+    A24 --> N72
+    N72 --> USA
+    N72 --> CNIL
+    N72 --> ENC
+    ENC -->|Oui| AVA
+    ENC -->|Non| FIN
+    AVA -->|1 mois apres traitement| FIN
+    FIN --> REX

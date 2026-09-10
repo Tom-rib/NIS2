@@ -1,0 +1,211 @@
+#!/usr/sbin/nft -f
+# =============================================================================
+#  HydroRegie - Politique de filtrage IT / OT
+#  Projet NIS2 - bloc 3 - traduction directe de la matrice de flux
+#  Version 1.0 - 2026-09-10
+#
+#  PRINCIPE : "tout ce qui n'est pas explicitement autorise est interdit".
+#  Chaque regle PASS correspond a une ligne de la matrice de flux, validee
+#  par l'exploitation. Pas de regle sans justification.
+#
+#  MISE EN SERVICE : d'abord en mode JOURNALISATION SEULE pendant 2 semaines
+#  (policy accept + log), puis passage en policy drop zone par zone.
+#  Voir Documentation/job-3-architecture.md, section 8.
+# =============================================================================
+
+flush ruleset
+
+table inet segmentation {
+
+    # -------------------------------------------------------------------------
+    # Definition des zones  (cf. bloc 3, section 3)
+    # -------------------------------------------------------------------------
+    define Z1_EXPOSITION   = 10.100.0.0/24
+    define Z2_IT_BUREAU    = 10.110.0.0/22
+    define Z3_IT_METIER    = 10.120.0.0/24
+    define Z4_SAUVEGARDE   = 10.130.0.0/24
+    define Z5_DMZ_IND      = 10.200.0.0/24
+    define Z6_SUPERVISION  = 10.210.0.0/24
+    define Z7_CONTROLE     = 10.220.0.0/22
+    define Z8_SITES        = 10.230.0.0/22
+    define Z9_ADMIN        = 10.240.0.0/24
+
+    # Hotes nommes : on autorise l'HOTE, jamais le sous-reseau entier
+    define SCADA_1         = 10.210.0.10
+    define SCADA_2         = 10.210.0.11
+    define HISTORIAN       = 10.210.0.20
+    define RELAIS_OPC      = 10.200.0.20
+    define HIST_MIROIR     = 10.200.0.21
+    define SRV_MAJ_OT      = 10.200.0.30
+    define BASTION         = 10.240.0.5
+    define COLLECTEUR_LOG  = 10.240.0.20
+    define NTP_1           = 10.240.0.30
+    define NTP_2           = 10.240.0.31
+    define SRV_SAUVEGARDE  = 10.130.0.10
+    define GMAO            = 10.120.0.30
+    define SIG             = 10.120.0.31
+
+    # Ports industriels
+    define P_MODBUS        = 502
+    define P_IEC104        = 2404
+    define P_OPCUA         = 4840
+    define P_SYSLOG_TLS    = 6514
+
+
+    chain forward {
+        type filter hook forward priority 0; policy drop;
+        # ^^^^^^^^^^^ policy drop = DENY par defaut.
+        # Pendant la phase de journalisation seule : "policy accept;"
+
+        # ---------------------------------------------------------------------
+        # 0. Trafic retour des sessions deja etablies
+        #    Sans cette regle, aucun flux ne fonctionne (erreur classique).
+        # ---------------------------------------------------------------------
+        ct state established,related accept
+        ct state invalid log prefix "INVALID: " drop
+
+        # =====================================================================
+        # 1. INTERDICTIONS EXPLICITES  -  placees AVANT les autorisations
+        #
+        #    Pourquoi les ecrire alors que "policy drop" bloque deja ?
+        #    -> pour la JOURNALISATION et la PREUVE. Une regle nommee produit
+        #       une ligne de journal identifiable, exploitable en detection
+        #       (art. 21(2)(b)) et comme preuve lors d'un controle (art. 32).
+        # =====================================================================
+
+        # D-01 : REGLE CENTRALE - la bureautique ne parle jamais a l'industriel
+        ip saddr $Z2_IT_BUREAU ip daddr { $Z5_DMZ_IND, $Z6_SUPERVISION, $Z7_CONTROLE, $Z8_SITES } \
+            log prefix "D01-BLOC-IT-VERS-OT: " level warn counter drop
+
+        # D-02 : un automate n'a rien a faire sur Internet
+        ip saddr { $Z7_CONTROLE, $Z8_SITES } ip daddr != { 10.0.0.0/8 } \
+            log prefix "D02-OT-VERS-INTERNET: " level crit counter drop
+
+        # D-03 : la DMZ ne doit jamais devenir un tremplin vers le procede
+        ip saddr $Z5_DMZ_IND ip daddr { $Z7_CONTROLE, $Z8_SITES } \
+            log prefix "D03-DMZ-VERS-AUTOMATES: " level crit counter drop
+
+        # D-05 : un portail compromis n'atteint ni la bureautique ni les sauvegardes
+        ip saddr $Z1_EXPOSITION ip daddr { $Z2_IT_BUREAU, $Z4_SAUVEGARDE } \
+            log prefix "D05-EXPO-VERS-INTERNE: " level warn counter drop
+
+        # D-07 : la DMZ ne se connecte pas a l'IT - c'est l'IT qui vient lire
+        ip saddr $Z5_DMZ_IND ip daddr { $Z2_IT_BUREAU, $Z3_IT_METIER } \
+            log prefix "D07-DMZ-VERS-IT: " level warn counter drop
+
+        # D-09 : un automate compromis ne remonte pas vers le SCADA
+        ip saddr $Z7_CONTROLE ip daddr $Z6_SUPERVISION ct state new \
+            log prefix "D09-AUTOMATE-VERS-SCADA: " level crit counter drop
+
+        # =====================================================================
+        # 2. FLUX AUTORISES  (matrice de flux, bloc 3 section 5.1)
+        # =====================================================================
+
+        # F-02 : portail abonnes -> ERP
+        ip saddr $Z1_EXPOSITION ip daddr $Z3_IT_METIER tcp dport 443 counter accept
+
+        # F-03 : bureautique -> applications metier
+        ip saddr $Z2_IT_BUREAU ip daddr $Z3_IT_METIER tcp dport { 443, 1433 } counter accept
+
+        # F-04 : GMAO -> relais OPC UA de la DMZ (remontee des compteurs de pompes)
+        ip saddr $GMAO ip daddr $RELAIS_OPC tcp dport $P_OPCUA counter accept
+
+        # F-05 : SIG -> historian miroir (debits et pressions)
+        ip saddr $SIG ip daddr $HIST_MIROIR tcp dport 1433 counter accept
+
+        # F-06 : LE SCADA POUSSE vers la DMZ  (jamais l'inverse)
+        ip saddr { $SCADA_1, $SCADA_2 } ip daddr $RELAIS_OPC tcp dport $P_OPCUA counter accept
+
+        # F-07 : replication de l'historique vers le miroir
+        ip saddr $HISTORIAN ip daddr $HIST_MIROIR tcp dport 1433 counter accept
+
+        # F-08 : SCADA -> automates : SEUL flux autorise vers le procede
+        ip saddr { $SCADA_1, $SCADA_2 } ip daddr $Z7_CONTROLE \
+            tcp dport { $P_MODBUS, $P_IEC104 } counter accept
+
+        # F-09 / F-10 : telegestion des sites distants (dans le tunnel WireGuard)
+        ip saddr { $SCADA_1, $SCADA_2 } ip daddr $Z8_SITES tcp dport $P_IEC104 counter accept
+        ip saddr $Z8_SITES ip daddr { $SCADA_1, $SCADA_2 } tcp dport $P_IEC104 counter accept
+
+        # F-11 : administration DEPUIS LE BASTION uniquement, session enregistree
+        ip saddr $BASTION ip daddr { $Z5_DMZ_IND, $Z6_SUPERVISION, $Z7_CONTROLE } \
+            tcp dport { 22, 3389 } log prefix "ADMIN-BASTION: " counter accept
+
+        # F-12 : distribution des correctifs OT, en fenetre planifiee
+        ip saddr $SRV_MAJ_OT ip daddr { $Z6_SUPERVISION, $Z7_CONTROLE } \
+            tcp dport { 445, 8530 } counter accept
+
+        # F-14 : journalisation centralisee - TOUTES les zones vers le collecteur
+        ip daddr $COLLECTEUR_LOG tcp dport $P_SYSLOG_TLS counter accept
+
+        # F-15 : synchronisation horaire - prerequis de toute chronologie de crise
+        ip daddr { $NTP_1, $NTP_2 } udp dport 123 counter accept
+
+        # F-16 : sauvegarde initiee PAR le serveur de sauvegarde
+        ip saddr $SRV_SAUVEGARDE ip daddr { $Z2_IT_BUREAU, $Z3_IT_METIER } \
+            tcp dport 10000-10010 counter accept
+
+        # =====================================================================
+        # 3. D-06 : protection des sauvegardes
+        #    Tout ce qui vise Z4 et qui n'a pas ete accepte ci-dessus est bloque.
+        # =====================================================================
+        ip daddr $Z4_SAUVEGARDE \
+            log prefix "D06-ACCES-SAUVEGARDE: " level crit counter drop
+
+        # =====================================================================
+        # 4. D-10 : DENY ALL journalise - toujours la DERNIERE regle
+        # =====================================================================
+        log prefix "D10-DENY-DEFAUT: " level info counter drop
+    }
+
+
+    chain input {
+        type filter hook input priority 0; policy drop;
+
+        ct state established,related accept
+        iif "lo" accept
+
+        # Administration du pare-feu : depuis Z9 UNIQUEMENT, avec MFA en amont
+        ip saddr $BASTION tcp dport 22 log prefix "ADMIN-FW: " counter accept
+
+        # Supervision du pare-feu
+        ip saddr $Z9_ADMIN udp dport 161 counter accept
+
+        log prefix "INPUT-DENY: " counter drop
+    }
+
+
+    chain output {
+        type filter hook output priority 0; policy accept;
+        # Le pare-feu doit pouvoir emettre ses journaux et interroger le NTP.
+    }
+}
+
+# =============================================================================
+#  MISE EN SERVICE
+# =============================================================================
+#
+#  # 1. Verifier la syntaxe SANS appliquer
+#  sudo nft -c -f nftables-segmentation.nft
+#
+#  # 2. Appliquer
+#  sudo nft -f nftables-segmentation.nft
+#
+#  # 3. Verifier le jeu de regles charge
+#  sudo nft list ruleset
+#
+#  # 4. Suivre les blocages en direct
+#  sudo journalctl -kf | grep -E "D0[1-9]|D10"
+#
+#  # 5. Compter les correspondances (les compteurs revelent les regles mortes)
+#  sudo nft list table inet segmentation | grep counter
+#
+#  # 6. Rendre persistant
+#  sudo cp nftables-segmentation.nft /etc/nftables.conf
+#  sudo systemctl enable --now nftables
+#
+# -----------------------------------------------------------------------------
+#  REVUE SEMESTRIELLE (art. 21(2)(f))
+#  Indicateur : nombre de regles actives absentes de la matrice de flux.
+#  Cible : 0. Une regle a compteur nul depuis 6 mois est candidate a suppression.
+# =============================================================================

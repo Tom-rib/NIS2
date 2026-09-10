@@ -1,0 +1,37 @@
+# SkillSpector baseline — findings listed here are suppressed on future scans.
+# Edit 'reason' fields and add glob 'rules' as needed. See docs/SUPPRESSION.md.
+# Justification (revue manuelle du 2026-08-30) :
+#   - AR2 « Anti-Refusal » SKILL.md:755 → matche « sans prévenir » dans la phrase
+#     « ne jamais lancer la visualisation SANS PRÉVENIR l'utilisateur ». Négation ignorée.
+#   - TM1 « Tool Misuse » references/update.md:198 → `rm -f graphify-out/.graphify_old.json`,
+#     nettoyage d'un fichier temporaire que le skill vient de créer lui-même.
+#   - 5 MEDIUM « Excessive Agency » : descriptions du comportement du skill, pas d'ordre caché.
+# Les 2 HIGH ont été lus un par un. Audit du paquet PyPI amont : voir JOURNAL 2026-08-28.
+version: 2
+scanner_version: 2.11.0
+rules: []
+fingerprints:
+- hash: sha256:c99da25ec8937e4e33a3bbb203523c49dd3587f400fb95a1b64872c63fbde185
+  rule_id: AR2
+  file: SKILL.md
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:f89410b8a463d8391407235f417c330834449af2e30a05ab850ada90befce26c
+  rule_id: TM1
+  file: references/update.md
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:31235a0ce4e3ef42892dd4799ca629b2ebba315c492ddc10ce98cc161ec97215
+  rule_id: EA1
+  file: SKILL.md
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:8d97f2ce30bc60cb0304ee823919dc1d60c6b2c99757969d07169c2fe0d60cd8
+  rule_id: EA2
+  file: SKILL.md
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:496080bb0486aef16987741c35a7db94a92ce39e33e667ac000bcbacc02655a5
+  rule_id: EA2
+  file: SKILL.md
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:5b5e445753fa69a4f5fd6016ae1d6e427a0a0b974e3d2321c1dbf53d68dd323a
+  rule_id: EA2
+  file: references/add-watch.md
+  reason: Accepted finding (auto-generated baseline)

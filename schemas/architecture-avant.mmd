@@ -1,0 +1,22 @@
+flowchart TB
+    NET(("Internet"))
+    subgraph PLAT["RESEAU UNIQUE 10.0.0.0/8 - AUCUN CLOISONNEMENT"]
+        P1["420 postes bureautiques"]
+        AD["Active Directory"]
+        ERP["ERP facturation"]
+        NAS["NAS de sauvegarde"]
+        ING["Poste d'ingenierie automates"]
+        SC["SUPERVISEUR SCADA"]
+        AU["350 automates et RTU"]
+    end
+    PROC["Pompes - Vannes - Chloration"]
+
+    NET --> PLAT
+    P1 --- AD
+    P1 --- ERP
+    P1 --- NAS
+    P1 --- ING
+    P1 -->|"Modbus 502 : RIEN NE BLOQUE"| AU
+    ING --- SC
+    SC --- AU
+    AU --> PROC
