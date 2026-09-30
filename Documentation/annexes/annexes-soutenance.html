@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Annexes — Soutenance NIS2 HydroRégie</title>
+<style>
+  :root{
+    --nuit:#0f2740;
+    --acier:#2e5c85;
+    --cyan:#00a5c4;
+    --cyan-pale:#e3f4f8;
+    --gris:#5a6672;
+    --trait:#c9d4de;
+    --fond:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:#8a949e;
+    font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--nuit);
+  }
+
+  /* --- Une slide = un format 16:9 --- */
+  .slide{
+    width:1280px;
+    height:720px;
+    margin:24px auto;
+    background:var(--fond);
+    padding:56px 72px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 4px 24px rgba(0,0,0,.28);
+    overflow:hidden;
+  }
+  /* filet cyan en haut de slide */
+  .slide::before{
+    content:"";
+    position:absolute;top:0;left:0;right:0;height:6px;
+    background:linear-gradient(90deg,var(--nuit) 0%,var(--acier) 55%,var(--cyan) 100%);
+  }
+  /* motif reseau discret en bas a droite */
+  .slide::after{
+    content:"";
+    position:absolute;right:-90px;bottom:-90px;
+    width:320px;height:320px;border-radius:50%;
+    border:1px solid var(--trait);
+    box-shadow:0 0 0 42px rgba(0,165,196,.05), inset 0 0 0 46px rgba(46,92,133,.04);
+  }
+
+  h1{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:34px;font-weight:600;margin:0 0 6px;color:var(--nuit);
+    letter-spacing:-.2px;
+  }
+  .sur-titre{
+    font-size:13px;letter-spacing:2.4px;text-transform:uppercase;
+    color:var(--cyan);font-weight:700;margin-bottom:10px;
+  }
+  .chapeau{
+    font-size:16px;color:var(--gris);margin:0 0 26px;max-width:940px;line-height:1.45;
+  }
+
+  table{border-collapse:collapse;width:100%;font-size:15px;}
+  thead th{
+    background:var(--nuit);color:#fff;text-align:left;
+    padding:11px 14px;font-weight:600;font-size:13px;
+    letter-spacing:.6px;text-transform:uppercase;
+  }
+  tbody td{padding:9px 14px;border-bottom:1px solid var(--trait);vertical-align:top;}
+  tbody tr:nth-child(even){background:#f6f9fb;}
+  tbody tr.fort td{background:var(--cyan-pale);font-weight:600;}
+  td.num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .puce{
+    display:inline-block;min-width:74px;text-align:center;
+    padding:2px 9px;border-radius:11px;font-size:12px;font-weight:700;
+    letter-spacing:.3px;
+  }
+  .p-vitale{background:#0f2740;color:#fff;}
+  .p-critique{background:#2e5c85;color:#fff;}
+  .p-haute{background:#7f9db8;color:#fff;}
+  .p-moyenne{background:#dde5ec;color:var(--nuit);}
+  .oui{color:#1c7c4a;font-weight:700;}
+  .non{color:#a8202b;font-weight:700;}
+
+  .note{
+    margin-top:auto;padding-top:16px;font-size:14px;color:var(--gris);
+    border-top:1px solid var(--trait);line-height:1.45;
+  }
+  .note strong{color:var(--nuit);}
+  .pied{
+    position:absolute;right:72px;bottom:26px;
+    font-size:12px;color:var(--gris);letter-spacing:.4px;
+  }
+
+  /* --- Slide de titre --- */
+  .titre{
+    justify-content:center;
+    background:linear-gradient(135deg,#0f2740 0%,#1c3f5e 60%,#25567c 100%);
+    color:#fff;
+  }
+  .titre::after{border-color:rgba(255,255,255,.16);box-shadow:0 0 0 42px rgba(0,165,196,.07);}
+  .titre h1{color:#fff;font-size:62px;letter-spacing:6px;}
+  .titre .sur-titre{color:var(--cyan);}
+  .titre ol{margin:26px 0 0;padding-left:22px;font-size:19px;line-height:2;color:#dce7f0;max-width:720px;}
+  .titre .pied{color:rgba(255,255,255,.6);}
+
+  @media print{
+    body{background:#fff;}
+    .slide{margin:0;box-shadow:none;page-break-after:always;}
+    @page{size:1280px 720px;margin:0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ SLIDE 0 — TITRE ============ -->
+<section class="slide titre">
+  <div class="sur-titre">Soutenance NIS2 · HydroRégie</div>
+  <h1>ANNEXES</h1>
+  <ol>
+    <li>Grille de qualification</li>
+    <li>Cotation des 10 domaines de l'article 21</li>
+    <li>Plan d'actions daté et responsabilisé</li>
+    <li>Découpage en 9 zones réseau</li>
+    <li>Matrice de flux</li>
+    <li>Chronologie de crise détaillée</li>
+    <li>Délais réglementaires</li>
+  </ol>
+  <div class="pied">Directive (UE) 2022/2555 — documents de référence</div>
+</section>
+
+<!-- ============ ANNEXE 1 ============ -->
+<section class="slide">
+  <div class="sur-titre">Annexe 1 · Bloc 1</div>
+  <h1>Grille de qualification</h1>
+  <p class="chapeau">Le statut se déduit du croisement entre le secteur (annexes I et II) et la taille
+    au sens de la recommandation 2003/361/CE.</p>
+  <table>
+    <thead><tr><th style="width:38%">Situation</th><th style="width:34%">Statut NIS2</th><th>Fondement</th></tr></thead>
+    <tbody>
+      <tr class="fort"><td>Annexe I + grande entreprise</td><td>ENTITÉ ESSENTIELLE</td><td>art. 3(1)(a)</td></tr>
+      <tr><td>Annexe I + moyenne entreprise</td><td>Entité importante</td><td>art. 3(2)</td></tr>
+      <tr><td>Annexe II + grande entreprise</td><td>Entité importante</td><td>art. 3(2)</td></tr>
+      <tr><td>Annexe II + moyenne entreprise</td><td>Entité importante</td><td>art. 3(2)</td></tr>
+      <tr><td>Petite ou micro entreprise</td><td>Hors champ</td><td>sauf art. 2(2)</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <strong>Seuil de la grande entreprise :</strong> 250 salariés ou plus, <em>ou</em> chiffre d'affaires
+    &gt; 50 M€ <em>et</em> bilan &gt; 43 M€.<br>
+    <strong>HydroRégie :</strong> 380 salariés, 72 M€ de CA, 95 M€ de bilan, secteur eau potable
+    (annexe I, point 6) → <span class="oui">entité essentielle</span>.
+  </div>
+  <div class="pied">Annexe 1</div>
+</section>
+
+<!-- ============ ANNEXE 2 ============ -->
+<section class="slide">
+  <div class="sur-titre">Annexe 2 · Bloc 2</div>
+  <h1>Cotation des 10 domaines de l'article 21</h1>
+  <p class="chapeau">Échelle de maturité : 0 inexistant · 1 initialisé · 2 reproductible · 3 défini · 4 maîtrisé.</p>
+  <table>
+    <thead><tr><th style="width:13%">Article</th><th>Domaine</th><th style="width:13%">Actuel</th><th style="width:13%">Cible</th></tr></thead>
+    <tbody>
+      <tr><td>21(2)(a)</td><td>Analyse des risques et sécurité des SI</td><td class="num">0</td><td class="num">3</td></tr>
+      <tr><td>21(2)(b)</td><td>Gestion des incidents</td><td class="num">1</td><td class="num">4</td></tr>
+      <tr><td>21(2)(c)</td><td>Continuité, sauvegardes, gestion de crise</td><td class="num">1</td><td class="num">4</td></tr>
+      <tr><td>21(2)(d)</td><td>Sécurité de la chaîne d'approvisionnement</td><td class="num">0</td><td class="num">3</td></tr>
+      <tr><td>21(2)(e)</td><td>Acquisition, maintenance, vulnérabilités</td><td class="num">1</td><td class="num">3</td></tr>
+      <tr><td>21(2)(f)</td><td>Évaluation de l'efficacité des mesures</td><td class="num">0</td><td class="num">3</td></tr>
+      <tr><td>21(2)(g)</td><td>Cyberhygiène et formation</td><td class="num">1</td><td class="num">3</td></tr>
+      <tr><td>21(2)(h)</td><td>Cryptographie et chiffrement</td><td class="num">1</td><td class="num">3</td></tr>
+      <tr><td>21(2)(i)</td><td>RH, contrôle d'accès, gestion des actifs</td><td class="num">1</td><td class="num">4</td></tr>
+      <tr><td>21(2)(j)</td><td>Authentification multifacteur et communications</td><td class="num">0</td><td class="num">4</td></tr>
+      <tr class="fort"><td>—</td><td>Moyenne</td><td class="num">0,6</td><td class="num">3,3</td></tr>
+    </tbody>
+  </table>
+  <div class="pied">Annexe 2</div>
+</section>
+
+<!-- ============ ANNEXE 3 ============ -->
+<section class="slide">
+  <div class="sur-titre">Annexe 3 · Bloc 2</div>
+  <h1>Plan d'actions daté et responsabilisé</h1>
+  <p class="chapeau">Extrait de la phase 0 « Urgences » — 95 k€ sur les 956 k€ du plan complet,
+    et l'essentiel du risque de court terme couvert.</p>
+  <table>
+    <thead><tr><th style="width:8%">ID</th><th>Action</th><th style="width:20%">Responsable</th><th style="width:14%">Échéance</th></tr></thead>
+    <tbody>
+      <tr><td>A-01</td><td>Créer le comité de sécurité par délibération</td><td>Direction générale</td><td class="num">31/10/2026</td></tr>
+      <tr><td>A-02</td><td>Désigner le RSSI (lettre de mission signée)</td><td>Direction générale</td><td class="num">31/10/2026</td></tr>
+      <tr><td>A-03</td><td>Créer le compte MonEspaceNIS2 et pré-enregistrer</td><td>DSI</td><td class="num">31/10/2026</td></tr>
+      <tr class="fort"><td>A-04</td><td>Procédure de notification + 3 modèles + grille</td><td>RSSI</td><td class="num">30/11/2026</td></tr>
+      <tr><td>A-05</td><td>MFA sur l'administration et les accès distants</td><td>DSI</td><td class="num">30/11/2026</td></tr>
+      <tr class="fort"><td>A-06</td><td>Sauvegarde hors ligne hebdomadaire</td><td>DSI</td><td class="num">15/12/2026</td></tr>
+      <tr><td>A-07</td><td>Versionner tous les programmes automates</td><td>Resp. exploitation</td><td class="num">15/12/2026</td></tr>
+      <tr><td>A-08</td><td>Supprimer TeamViewer → VPN + MFA + bastion</td><td>DSI</td><td class="num">31/12/2026</td></tr>
+      <tr><td>A-09</td><td>Annuaire de crise papier + messagerie hors domaine</td><td>RSSI</td><td class="num">31/12/2026</td></tr>
+    </tbody>
+  </table>
+  <div class="note"><strong>39 actions au total</strong> réparties sur 4 phases, d'octobre 2026 à septembre 2028.</div>
+  <div class="pied">Annexe 3</div>
+</section>
+
+<!-- ============ ANNEXE 4 ============ -->
+<section class="slide">
+  <div class="sur-titre">Annexe 4 · Bloc 3</div>
+  <h1>Découpage en 9 zones</h1>
+  <p class="chapeau">Chaque zone regroupe des équipements de criticité homogène. Convention d'adressage :
+    le numéro de VLAN reprend le deuxième octet de l'adresse.</p>
+  <table>
+    <thead><tr><th style="width:8%">Zone</th><th style="width:28%">Nom</th><th style="width:10%">VLAN</th><th style="width:22%">Réseau</th><th>Criticité</th></tr></thead>
+    <tbody>
+      <tr><td>Z1</td><td>Exposition Internet</td><td class="num">100</td><td class="num">10.100.0.0/24</td><td><span class="puce p-moyenne">Moyenne</span></td></tr>
+      <tr><td>Z2</td><td>IT bureautique</td><td class="num">110</td><td class="num">10.110.0.0/22</td><td><span class="puce p-moyenne">Moyenne</span></td></tr>
+      <tr><td>Z3</td><td>IT métier</td><td class="num">120</td><td class="num">10.120.0.0/24</td><td><span class="puce p-haute">Haute</span></td></tr>
+      <tr><td>Z4</td><td>Sauvegarde</td><td class="num">130</td><td class="num">10.130.0.0/24</td><td><span class="puce p-critique">Critique</span></td></tr>
+      <tr class="fort"><td>Z5</td><td>DMZ industrielle</td><td class="num">200</td><td class="num">10.200.0.0/24</td><td><span class="puce p-critique">Critique</span></td></tr>
+      <tr><td>Z6</td><td>Supervision OT</td><td class="num">210</td><td class="num">10.210.0.0/24</td><td><span class="puce p-vitale">Vitale</span></td></tr>
+      <tr><td>Z7</td><td>Contrôle OT</td><td class="num">220</td><td class="num">10.220.0.0/22</td><td><span class="puce p-vitale">Vitale</span></td></tr>
+      <tr><td>Z8</td><td>Sites distants</td><td class="num">230</td><td class="num">10.230.0.0/22</td><td><span class="puce p-vitale">Vitale</span></td></tr>
+      <tr><td>Z9</td><td>Administration</td><td class="num">240</td><td class="num">10.240.0.0/24</td><td><span class="puce p-critique">Critique</span></td></tr>
+    </tbody>
+  </table>
+  <div class="pied">Annexe 4</div>
+</section>
+
+<!-- ============ ANNEXE 5 ============ -->
+<section class="slide">
+  <div class="sur-titre">Annexe 5 · Bloc 3</div>
+  <h1>Matrice de flux</h1>
+  <p class="chapeau">Principe : <strong>tout ce qui n'est pas explicitement autorisé est interdit</strong>.
+    Chaque ligne autorisée porte une justification métier et un validateur.</p>
+  <table>
+    <thead><tr><th style="width:20%">Source</th><th style="width:22%">Destination</th><th style="width:16%">Port</th><th>Justification</th></tr></thead>
+    <tbody>
+      <tr><td>Z6 SCADA</td><td>Z5 relais OPC UA</td><td class="num">4840</td><td><span class="oui">✔</span> L'OT <strong>pousse</strong> sa donnée, jamais l'inverse</td></tr>
+      <tr><td>Z3 GMAO</td><td>Z5 relais OPC UA</td><td class="num">4840</td><td><span class="oui">✔</span> Remontée des compteurs de pompes</td></tr>
+      <tr><td>Z6 SCADA</td><td>Z7 automates</td><td class="num">502 · 2404</td><td><span class="oui">✔</span> Pilotage — seul flux vers le procédé</td></tr>
+      <tr><td>Z9 bastion</td><td>Z5 · Z6 · Z7</td><td class="num">22 · 3389</td><td><span class="oui">✔</span> Administration tracée, session enregistrée</td></tr>
+      <tr><td>Toutes zones</td><td>Z9 collecteur</td><td class="num">6514</td><td><span class="oui">✔</span> Journalisation centralisée</td></tr>
+      <tr class="fort"><td>Z2 bureautique</td><td>Z5 · Z6 · Z7 · Z8</td><td>tout</td><td><span class="non">✘</span> RÈGLE CENTRALE — journalisée et alertée</td></tr>
+      <tr><td>Z7 automates</td><td>Internet</td><td>tout</td><td><span class="non">✘</span> Un automate n'a rien à faire sur Internet</td></tr>
+      <tr><td>Z5 DMZ</td><td>Z7 automates</td><td>tout</td><td><span class="non">✘</span> La DMZ ne doit pas devenir un tremplin</td></tr>
+      <tr><td>any</td><td>any</td><td>tout</td><td><span class="non">✘</span> DENY ALL journalisé — dernière règle</td></tr>
+    </tbody>
+  </table>
+  <div class="pied">Annexe 5</div>
+</section>
+
+<!-- ============ ANNEXE 6 ============ -->
+<section class="slide">
+  <div class="sur-titre">Annexe 6 · Bloc 4</div>
+  <h1>Chronologie de crise détaillée</h1>
+  <p class="chapeau">Scénario de rançongiciel — mardi 16 mars 2027. T0 est l'instant où l'entité
+    a connaissance de l'incident : c'est de lui que partent les délais de l'article 23.</p>
+  <table>
+    <thead><tr><th style="width:11%">Heure</th><th style="width:24%">Acteur</th><th>Fait et décision</th></tr></thead>
+    <tbody>
+      <tr class="fort"><td class="num">04:12</td><td>Astreinte exploitation</td><td><strong>T0</strong> — alarmes SCADA, postes inaccessibles. Ouverture de la main courante</td></tr>
+      <tr><td class="num">04:22</td><td>Responsable DSI</td><td>Chiffrement confirmé sur le serveur de fichiers et l'ERP</td></tr>
+      <tr><td class="num">04:30</td><td>RSSI</td><td>Décision de couper le lien IT ↔ OT</td></tr>
+      <tr class="fort"><td class="num">04:45</td><td>DSI + exploitation</td><td>Lien coupé en <strong>33 min</strong> — automates en autonomie locale, <span class="oui">l'eau continue de couler</span></td></tr>
+      <tr><td class="num">05:00</td><td>RSSI</td><td>Incident qualifié <strong>important</strong> (art. 23(3))</td></tr>
+      <tr><td class="num">05:30</td><td>Cellule de crise</td><td>Réunion physique, communication hors domaine</td></tr>
+      <tr><td class="num">06:15</td><td>DSI</td><td>Sauvegarde hors ligne intacte → <strong>la rançon ne sera pas payée</strong></td></tr>
+      <tr><td class="num">06:30</td><td>RSSI</td><td>Appel au CERT-FR pour assistance technique</td></tr>
+      <tr><td class="num">07:00</td><td>DSI</td><td>Images disque réalisées <em>avant</em> toute réinstallation</td></tr>
+      <tr class="fort"><td class="num">14:30</td><td>Direction générale</td><td><strong>Alerte précoce transmise</strong> — T0 + 10 h 18</td></tr>
+      <tr><td class="num">15:00</td><td>Communication</td><td>Information des usagers publiée (art. 23(1))</td></tr>
+    </tbody>
+  </table>
+  <div class="pied">Annexe 6</div>
+</section>
+
+<!-- ============ ANNEXE 7 ============ -->
+<section class="slide">
+  <div class="sur-titre">Annexe 7 · Bloc 4</div>
+  <h1>Délais réglementaires</h1>
+  <p class="chapeau">Les échéances de l'article 23, et leur respect dans le scénario.</p>
+  <table>
+    <thead><tr><th style="width:27%">Échéance</th><th style="width:24%">Délai</th><th style="width:14%">Article</th><th>Réalisé</th></tr></thead>
+    <tbody>
+      <tr><td>Alerte précoce</td><td>24 h après connaissance</td><td>23(4)(a)</td><td><span class="oui">✔</span> T0 + 10 h 18</td></tr>
+      <tr><td>Notification d'incident</td><td>72 h après connaissance</td><td>23(4)(b)</td><td><span class="oui">✔</span> T0 + 60 h 48</td></tr>
+      <tr><td>Rapport intermédiaire</td><td>sur demande du CSIRT</td><td>23(4)(c)</td><td>Non demandé</td></tr>
+      <tr class="fort"><td>Rapport final</td><td>1 mois après <strong>la notification</strong></td><td>23(4)(d)</td><td><span class="oui">✔</span> J + 28 jours</td></tr>
+      <tr><td>Rapport d'avancement</td><td>si incident encore en cours</td><td>23(4)(e)</td><td>Sans objet</td></tr>
+      <tr><td>Information des usagers</td><td>sans retard injustifié</td><td>23(1)</td><td><span class="oui">✔</span> J0 à 15 h 00</td></tr>
+      <tr><td>Notification CNIL</td><td>72 h — horloge distincte</td><td>art. 33 RGPD</td><td><span class="oui">✔</span> J+2</td></tr>
+      <tr><td>Réponse de l'autorité</td><td>24 h après l'alerte précoce</td><td>23(5)</td><td>Reçue</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <strong>Le piège :</strong> le mois du rapport final court à compter de la <strong>notification des
+    72 h</strong>, et non de la découverte de l'incident.
+  </div>
+  <div class="pied">Annexe 7</div>
+</section>
+
+</body>
+</html>

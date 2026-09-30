@@ -20,15 +20,19 @@ notifier un incident en **24 h / 72 h / 1 mois**. Ce dépôt fait les quatre.
 
 ## 🗺️ Sommaire
 
-### 📘 Le parcours pédagogique (à lire dans l'ordre la première fois)
+### 📄 Le sujet et son cadrage
 
-| # | Fiche | Ce que tu y apprends |
-|---|---|---|
-| 01 | [Préparation](01_preparation.md) | Le contexte, le vocabulaire, la maquette de test, la méthode de travail |
-| 02 | [Qualification & cadre réglementaire](02_qualification.md) | Comment décider si une entité est concernée, et à quel titre |
-| 03 | [Mise en conformité & architecture](03_mise_en_conformite.md) | Les mesures de l'article 21, la segmentation IT/OT, les choix techniques |
-| 04 | [Tests & vérifications](04_tests.md) | Comment **prouver** que la segmentation et les procédures fonctionnent |
-| 05 | [Annexes](05_annexes.md) | Glossaire, commandes utiles, dépannage, modèles, sources |
+| Fichier | Contenu |
+|---|---|
+| [`NIS2_sujet.md`](NIS2_sujet.md) · [`.pdf`](NIS2_sujet.pdf) | L'énoncé du cas pratique |
+| [`NIS2_-_KICK_OFF.md`](NIS2_-_KICK_OFF.md) · [`.pdf`](NIS2%20-%20KICK%20OFF.pdf) | Ce qui est attendu bloc par bloc, et la grille d'évaluation |
+
+### 🎯 Par où commencer
+
+1. **La présentation de soutenance** — [`Documentation/presentation-soutenance.pdf`](Documentation/presentation-soutenance.pdf) :
+   21 slides, la démonstration complète en 15 minutes de lecture.
+2. **Le rendu bloc par bloc** — le tableau « Le rendu » ci-dessous, dans l'ordre 1 → 4.
+3. **Le cours** — si un article ou un concept technique demande une explication.
 
 ### 📕 Le cours
 
@@ -46,24 +50,24 @@ notifier un incident en **24 h / 72 h / 1 mois**. Ce dépôt fait les quatre.
 | 3 | Schéma d'architecture segmentée IT/OT | [`Documentation/job-3-architecture.md`](Documentation/job-3-architecture.md) |
 | 4 | Chronologie de crise + notifications rédigées | [`Documentation/job-4-crise-notifications.md`](Documentation/job-4-crise-notifications.md) |
 | — | Notifications prêtes à envoyer (24 h / 72 h / 1 mois) | [`Documentation/annexes/`](Documentation/annexes/) |
+| — | **Présentation de soutenance** — 21 slides, annexes intégrées | [`Documentation/presentation-soutenance.pdf`](Documentation/presentation-soutenance.pdf) |
 
 ### 📄 Le document unique
 
 | Fichier | Usage |
 |---|---|
-| [`Documentation.md`](Documentation.md) | Réponse complète au sujet, d'un seul tenant (~2 700 lignes) |
-| `Documentation.docx` | Même contenu, format Word — page de garde, sommaire automatique, à imprimer ou à déposer |
+| [`Documentation.docx`](Documentation.docx) | Réponse complète au sujet d'un seul tenant, format Word — page de garde, sommaire automatique, à imprimer ou à déposer |
 
-> ⚙️ Ces deux fichiers sont **générés** à partir de `Documentation/`. Pour les mettre à jour :
-> corriger le livrable concerné, puis relancer les deux scripts de
-> [`scripts/documentation/`](scripts/documentation/). Ne jamais les éditer à la main.
+> ⚙️ Ce fichier est **généré** à partir de `Documentation/`. Pour le mettre à jour : corriger le
+> livrable concerné, puis relancer les scripts de
+> [`scripts/documentation/`](scripts/documentation/). Ne jamais l'éditer à la main.
 
 ### 🧰 Les fichiers techniques
 
 | Dossier | Contenu |
 |---|---|
 | [`scripts/`](scripts/) | Configurations VLAN, règles de pare-feu, scripts de vérification, sauvegarde |
-| [`schemas/`](schemas/) | Schémas d'architecture (avant / après), format Mermaid + HTML |
+| [`schemas/`](schemas/) | Schémas d'architecture (avant / cible), sources Mermaid et SVG + rendus PNG |
 
 ---
 
@@ -78,8 +82,9 @@ cd NIS2
 cat Documentation/job-1-qualification.md
 ```
 
-Aucun outil n'est obligatoire pour lire le rendu. Pour **rejouer la partie technique**,
-voir les prérequis dans [01_preparation.md](01_preparation.md) (3 VM + un pare-feu virtuel).
+Aucun outil n'est obligatoire pour lire le rendu. Pour **rejouer la partie technique**, les
+configurations et les scripts de vérification sont dans [`scripts/`](scripts/) (3 VM + un
+pare-feu virtuel suffisent).
 
 ---
 

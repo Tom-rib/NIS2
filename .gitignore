@@ -1,4 +1,14 @@
-# Secrets — JAMAIS commités
+# =============================================================================
+#  Ce depot ne contient que le rendu : le sujet, les livrables, et ce qui sert
+#  a y repondre. L'outillage, les brouillons et les artefacts regenerables
+#  restent en local.
+#
+#  Strategie : LISTE BLANCHE. Tout est exclu a la racine, puis reautorise au
+#  cas par cas. Pour publier un nouveau fichier a la racine, il faut donc
+#  ajouter une ligne "!" dans la section prevue plus bas.
+# =============================================================================
+
+# --- Secrets : JAMAIS commites, a tous les niveaux ---------------------------
 .env
 .env.local
 .env.*.local
@@ -6,37 +16,66 @@
 *.key
 secrets/
 credentials.json
-
-# MCP ssh-admin : config réelle (contient les cibles/refs de secrets) et audit
 .claude/mcp/ssh-admin/hosts.json
 .claude/mcp/ssh-admin/ssh-mcp-audit.log
 
-# Dépendances
-node_modules/
-__pycache__/
-*.pyc
-.venv/
-venv/
-vendor/
-
-# Build / sorties
-dist/
-build/
-out/
-target/
-*.log
-
-# Graphify : sorties régénérables (graphe, cache SHA256, vault Obsidian)
-graphify-out/
-
-# Mémoire de travail locale (la session courante — pas l'historique partagé)
-.claude/memory/session-*.md
-scratchpad/
-
-# OS / éditeurs
+# --- Bruit systeme, editeurs, dependances, a tous les niveaux ----------------
 .DS_Store
 Thumbs.db
 .idea/
 .vscode/*
 !.vscode/extensions.json
 *.swp
+__pycache__/
+*.pyc
+node_modules/
+.venv/
+venv/
+vendor/
+dist/
+build/
+out/
+target/
+*.log
+graphify-out/
+scratchpad/
+
+# =============================================================================
+#  RACINE : tout exclu, puis reautorise explicitement
+#  (exclut donc .claude/, .mcp.json, .env.example, CLAUDE.md,
+#   01_preparation.md a 05_annexes.md, et Documentation.md)
+# =============================================================================
+/*
+
+!/.gitignore
+!/README.md
+
+# Le sujet et son cadrage
+!/NIS2_sujet.md
+!/NIS2_sujet.pdf
+!/NIS2 - KICK OFF.pdf
+!/NIS2_-_KICK_OFF.md
+
+# Le rendu consolide au format Word
+!/Documentation.docx
+
+# Les quatre livrables, les schemas, les scripts, le cours de reference
+!/Documentation/
+!/schemas/
+!/scripts/
+!/Cour/
+
+# =============================================================================
+#  Exclusions a l'interieur des dossiers conserves
+# =============================================================================
+
+# Artefacts regeneres par scripts/documentation/regenerer-presentation.py
+# (le PDF de la presentation, lui, reste publie)
+/Documentation/slides-png/
+/Documentation/slides-png.zip
+/Documentation/presentation-soutenance.pptx
+
+# Preparation personnelle a l'oral : reponses aux questions du jury, indications
+# de jeu, arbitrages de soutenance. Ce n'est pas un livrable, et le publier
+# reviendrait a montrer au correcteur ce qu'on a choisi de ne pas dire.
+/Documentation/notes-orateur.md

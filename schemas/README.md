@@ -3,11 +3,31 @@
 > Les schémas sont écrits en **Mermaid** : ils sont versionnés comme du texte (donc `git diff`
 > fonctionne) et **GitHub les affiche directement** dans le navigateur.
 
-| Fichier | Contenu |
-|---|---|
-| [`architecture-avant.mmd`](architecture-avant.mmd) | L'existant : réseau plat, aucun cloisonnement |
-| [`architecture-apres.mmd`](architecture-apres.mmd) | La cible : 9 zones, DMZ industrielle, 2 pare-feu |
-| [`flux-notification.mmd`](flux-notification.mmd) | Le processus de notification 24 h / 72 h / 1 mois |
+| Fichier | Contenu | Format |
+|---|---|---|
+| [`architecture-avant.mmd`](architecture-avant.mmd) · `.png` | L'existant : réseau plat, aucun cloisonnement | Mermaid + PNG |
+| [`architecture-cible.svg`](architecture-cible.svg) · `.png` | 🔴 **La cible, version présentation** — mise en page maîtrisée | SVG + PNG 2400 px |
+| [`architecture-apres.mmd`](architecture-apres.mmd) · `.png` | La cible, version Mermaid (source versionnable) | Mermaid + PNG |
+| [`flux-notification.mmd`](flux-notification.mmd) · `.png` | Le processus de notification 24 h / 72 h / 1 mois | Mermaid + PNG |
+
+> ⚠️ **Pourquoi deux versions de l'architecture cible ?**
+> Le rendu automatique de Mermaid (`architecture-apres.png`) place la **DMZ tout en bas**, sous la
+> zone OT — parce que le flux « l'OT pousse vers la DMZ » tire la DMZ vers le bas dans son moteur de
+> placement. C'est exact sémantiquement, mais **ça contredit visuellement le message** : la DMZ doit
+> apparaître *entre* l'IT et l'OT.
+> ➡️ Pour toute présentation ou impression, utiliser **`architecture-cible.svg`**, dont la mise en
+> page est fixée à la main. Le fichier Mermaid reste utile comme source légère à versionner.
+
+### Régénérer les images
+
+```bash
+# Les diagrammes Mermaid (necessite Node ; utilise Edge plutot que de telecharger Chromium)
+npx -y @mermaid-js/mermaid-cli@11 -i schemas/flux-notification.mmd -o schemas/flux-notification.png -w 2400 -b white -p pptr-config.json
+
+# Le schema cible : SVG vers PNG haute definition
+msedge --headless=new --disable-gpu --force-device-scale-factor=1.5 --window-size=1600,1120 \
+       --screenshot=schemas/architecture-cible.png file:///.../schemas/architecture-cible.svg
+```
 
 ---
 

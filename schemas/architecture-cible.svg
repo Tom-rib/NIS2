@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1210" viewBox="0 0 1600 1210" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2e5c85"/>
+    </marker>
+    <marker id="flc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#00a5c4"/>
+    </marker>
+    <marker id="flg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8a949e"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="1210" fill="#ffffff"/>
+  <rect x="0" y="0" width="1600" height="6" fill="#0f2740"/>
+  <rect x="0" y="0" width="620" height="6" fill="#00a5c4"/>
+
+  <!-- Titre -->
+  <text x="40" y="44" font-size="27" font-weight="700" fill="#0f2740">HydroRégie — architecture cible segmentée IT / OT</text>
+  <text x="40" y="70" font-size="15" fill="#5a6672">9 zones de criticité homogène · 2 pare-feu en cascade · DMZ industrielle — modèle zones et conduits IEC 62443, adossé à Purdue</text>
+
+  <!-- Internet -->
+  <ellipse cx="620" cy="110" rx="74" ry="27" fill="#eef2f6" stroke="#8a949e" stroke-width="1.5"/>
+  <text x="620" y="116" font-size="15" fill="#0f2740" text-anchor="middle">Internet</text>
+  <line x1="620" y1="137" x2="620" y2="146" stroke="#2e5c85" stroke-width="2" marker-end="url(#fl)"/>
+
+  <!-- Z1 Exposition -->
+  <rect x="450" y="150" width="340" height="58" rx="4" fill="#f4f7fa" stroke="#7f9db8" stroke-width="1.5"/>
+  <text x="620" y="174" font-size="14" font-weight="600" fill="#0f2740" text-anchor="middle">Z1 — Exposition · VLAN 100</text>
+  <text x="620" y="194" font-size="13" fill="#5a6672" text-anchor="middle">Portail abonnés · reverse proxy</text>
+  <line x1="620" y1="208" x2="620" y2="268" stroke="#2e5c85" stroke-width="2" marker-end="url(#fl)"/>
+
+  <!-- ================= ZONE IT ================= -->
+  <rect x="40" y="238" width="1210" height="132" rx="6" fill="#fbfcfd" stroke="#7f9db8" stroke-width="1.5"/>
+  <text x="52" y="257" font-size="13" font-weight="700" fill="#2e5c85" letter-spacing="1.4">ZONE IT — niveaux Purdue 4 et 5</text>
+
+  <rect x="70" y="272" width="340" height="72" rx="4" fill="#f4f7fa" stroke="#7f9db8" stroke-width="1.5"/>
+  <text x="240" y="298" font-size="14" font-weight="600" fill="#0f2740" text-anchor="middle">Z2 — IT bureautique · VLAN 110</text>
+  <text x="240" y="320" font-size="13" fill="#5a6672" text-anchor="middle">420 postes · Active Directory</text>
+
+  <rect x="450" y="272" width="340" height="72" rx="4" fill="#f4f7fa" stroke="#7f9db8" stroke-width="1.5"/>
+  <text x="620" y="298" font-size="14" font-weight="600" fill="#0f2740" text-anchor="middle">Z3 — IT métier · VLAN 120</text>
+  <text x="620" y="320" font-size="13" fill="#5a6672" text-anchor="middle">ERP · GMAO · SIG</text>
+
+  <rect x="830" y="272" width="390" height="72" rx="4" fill="#f4f7fa" stroke="#7f9db8" stroke-width="1.5"/>
+  <text x="1025" y="298" font-size="14" font-weight="600" fill="#0f2740" text-anchor="middle">Z4 — Sauvegarde · VLAN 130</text>
+  <text x="1025" y="320" font-size="13" fill="#5a6672" text-anchor="middle">Stockage immuable · copie hors ligne</text>
+
+  <!-- IT descend vers le pare-feu 1 -->
+  <line x1="620" y1="344" x2="620" y2="396" stroke="#2e5c85" stroke-width="2" marker-end="url(#fl)"/>
+
+  <!-- ================= PARE-FEU 1 ================= -->
+  <rect x="40" y="400" width="1210" height="48" rx="4" fill="#0f2740"/>
+  <text x="64" y="430" font-size="16" font-weight="700" fill="#ffffff" letter-spacing="1.2">PARE-FEU 1 — IT ↔ DMZ</text>
+  <rect x="470" y="410" width="762" height="28" rx="14" fill="#a8202b"/>
+  <text x="851" y="429" font-size="13.5" font-weight="700" fill="#ffffff" text-anchor="middle">⛔ D-01 — la bureautique Z2 ne joint JAMAIS Z6 · Z7 · Z8</text>
+
+
+  <!-- ================= DMZ INDUSTRIELLE ================= -->
+  <rect x="40" y="478" width="1210" height="150" rx="6" fill="#e3f4f8" stroke="#00a5c4" stroke-width="2" stroke-dasharray="7 4"/>
+  <text x="52" y="500" font-size="13" font-weight="700" fill="#00738a" letter-spacing="1.4">Z5 — DMZ INDUSTRIELLE · VLAN 200 · 10.200.0.0/24 — niveau 3.5 : le seul point de rencontre</text>
+
+  <rect x="70" y="522" width="270" height="72" rx="4" fill="#ffffff" stroke="#00a5c4" stroke-width="1.5"/>
+  <text x="205" y="548" font-size="14" font-weight="600" fill="#0f2740" text-anchor="middle">Bastion</text>
+  <text x="205" y="570" font-size="12.5" fill="#5a6672" text-anchor="middle">sessions enregistrées</text>
+
+  <rect x="390" y="522" width="290" height="72" rx="4" fill="#ffffff" stroke="#00a5c4" stroke-width="2.5"/>
+  <text x="535" y="548" font-size="14" font-weight="700" fill="#0f2740" text-anchor="middle">Relais OPC UA</text>
+  <text x="535" y="570" font-size="12.5" fill="#5a6672" text-anchor="middle">copie en lecture seule</text>
+
+  <rect x="730" y="522" width="240" height="72" rx="4" fill="#ffffff" stroke="#00a5c4" stroke-width="1.5"/>
+  <text x="850" y="548" font-size="14" font-weight="600" fill="#0f2740" text-anchor="middle">Historian miroir</text>
+  <text x="850" y="570" font-size="12.5" fill="#5a6672" text-anchor="middle">réplique de l'historique</text>
+
+  <rect x="1010" y="522" width="210" height="72" rx="4" fill="#ffffff" stroke="#00a5c4" stroke-width="1.5"/>
+  <text x="1115" y="548" font-size="14" font-weight="600" fill="#0f2740" text-anchor="middle">Serveur de MAJ</text>
+  <text x="1115" y="570" font-size="12.5" fill="#5a6672" text-anchor="middle">correctifs OT</text>
+
+
+  <!-- ================= PARE-FEU 2 ================= -->
+  <rect x="40" y="658" width="1210" height="48" rx="4" fill="#0f2740"/>
+  <text x="64" y="688" font-size="16" font-weight="700" fill="#ffffff" letter-spacing="1.2">PARE-FEU 2 — DMZ ↔ OT</text>
+  <rect x="470" y="668" width="762" height="28" rx="14" fill="#a8202b"/>
+  <text x="851" y="687" font-size="13.5" font-weight="700" fill="#ffffff" text-anchor="middle">⛔ D-03 — la DMZ n'initie JAMAIS vers les automates</text>
+
+  <line x1="590" y1="764" x2="590" y2="712" stroke="#00a5c4" stroke-width="2.6" marker-end="url(#flc)"/>
+
+  <!-- ================= ZONE OT ================= -->
+  <rect x="40" y="736" width="1210" height="250" rx="6" fill="#fbfcfd" stroke="#0f2740" stroke-width="1.8"/>
+  <text x="52" y="757" font-size="13" font-weight="700" fill="#0f2740" letter-spacing="1.4">ZONE OT — niveaux Purdue 1 à 3 · criticité VITALE</text>
+
+  <rect x="380" y="766" width="420" height="68" rx="4" fill="#e8eef4" stroke="#0f2740" stroke-width="1.8"/>
+  <text x="590" y="791" font-size="14" font-weight="700" fill="#0f2740" text-anchor="middle">Z6 — Supervision · VLAN 210</text>
+  <text x="590" y="812" font-size="13" fill="#5a6672" text-anchor="middle">SCADA redondé · historian primaire</text>
+
+  <path d="M 500 834 L 350 876" stroke="#2e5c85" stroke-width="2" fill="none" marker-end="url(#fl)"/>
+  <text x="330" y="861" font-size="13" font-weight="600" fill="#2e5c85">502 · 2404</text>
+
+  <path d="M 680 834 L 840 876" stroke="#2e5c85" stroke-width="2" fill="none" marker-end="url(#fl)"/>
+  <text x="800" y="861" font-size="13" font-weight="600" fill="#2e5c85">VPN · 2404</text>
+
+  <rect x="110" y="880" width="420" height="68" rx="4" fill="#e8eef4" stroke="#0f2740" stroke-width="1.8"/>
+  <text x="320" y="905" font-size="14" font-weight="700" fill="#0f2740" text-anchor="middle">Z7 — Contrôle · VLAN 220</text>
+  <text x="320" y="926" font-size="13" fill="#5a6672" text-anchor="middle">~350 automates et RTU · IHM locales</text>
+
+  <rect x="650" y="880" width="420" height="68" rx="4" fill="#e8eef4" stroke="#0f2740" stroke-width="1.8"/>
+  <text x="860" y="905" font-size="14" font-weight="700" fill="#0f2740" text-anchor="middle">Z8 — Sites distants · VLAN 230</text>
+  <text x="860" y="926" font-size="13" fill="#5a6672" text-anchor="middle">réservoirs, relevage — WireGuard</text>
+
+  <line x1="320" y1="948" x2="320" y2="1012" stroke="#2e5c85" stroke-width="2" marker-end="url(#fl)"/>
+  <line x1="860" y1="948" x2="860" y2="1012" stroke="#2e5c85" stroke-width="2" marker-end="url(#fl)"/>
+
+  <!-- ================= NIVEAU 0 ================= -->
+  <rect x="40" y="1016" width="1210" height="64" rx="6" fill="#0f2740"/>
+  <text x="645" y="1044" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="1.2">NIVEAU 0 — PROCÉDÉ</text>
+  <text x="645" y="1066" font-size="13" fill="#a9c2d6" text-anchor="middle">pompes · vannes · chloration · analyseurs — l'eau potable de 450 000 habitants</text>
+
+  <!-- ================= Z9 ADMINISTRATION ================= -->
+  <rect x="1290" y="238" width="280" height="748" rx="6" fill="#f4f7fa" stroke="#2e5c85" stroke-width="1.8"/>
+  <text x="1430" y="268" font-size="14" font-weight="700" fill="#0f2740" text-anchor="middle">Z9 — Administration</text>
+  <text x="1430" y="289" font-size="13" fill="#5a6672" text-anchor="middle">VLAN 240 · 10.240.0.0/24</text>
+  <line x1="1312" y1="306" x2="1548" y2="306" stroke="#c9d4de" stroke-width="1"/>
+  <text x="1430" y="332" font-size="13" fill="#0f2740" text-anchor="middle">Collecteur de journaux</text>
+  <text x="1430" y="356" font-size="13" fill="#0f2740" text-anchor="middle">Serveurs NTP</text>
+  <text x="1430" y="380" font-size="13" fill="#0f2740" text-anchor="middle">Supervision de sécurité</text>
+  <line x1="1312" y1="400" x2="1548" y2="400" stroke="#c9d4de" stroke-width="1"/>
+  <text x="1430" y="428" font-size="12.5" fill="#5a6672" text-anchor="middle" font-style="italic">Reçoit de toutes les zones,</text>
+  <text x="1430" y="448" font-size="12.5" fill="#5a6672" text-anchor="middle" font-style="italic">n'émet vers aucune.</text>
+  <text x="1430" y="476" font-size="12.5" fill="#5a6672" text-anchor="middle">Un attaquant ne peut pas</text>
+  <text x="1430" y="496" font-size="12.5" fill="#5a6672" text-anchor="middle">y effacer ses traces.</text>
+
+  <line x1="1252" y1="300" x2="1286" y2="300" stroke="#8a949e" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#flg)"/>
+  <line x1="1252" y1="545" x2="1286" y2="545" stroke="#8a949e" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#flg)"/>
+  <line x1="1252" y1="880" x2="1286" y2="880" stroke="#8a949e" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#flg)"/>
+  <text x="1269" y="292" font-size="11" fill="#8a949e" text-anchor="middle">syslog</text>
+  <text x="1269" y="537" font-size="11" fill="#8a949e" text-anchor="middle">syslog</text>
+  <text x="1269" y="872" font-size="11" fill="#8a949e" text-anchor="middle">syslog</text>
+
+  <!-- ===== Flux inter-zones et etiquettes : dessines EN DERNIER pour rester au-dessus ===== -->
+  <path d="M 600 448 L 552 516" stroke="#00a5c4" stroke-width="2.4" fill="none" marker-end="url(#flc)"/>
+  <path d="M 560 656 L 520 598" stroke="#00a5c4" stroke-width="2.8" fill="none" marker-end="url(#flc)"/>
+
+  <rect x="612" y="216" width="52" height="21" rx="3" fill="#ffffff" stroke="#c9d4de" stroke-width="0.8"/>
+  <text x="638" y="231" font-size="13" fill="#2e5c85" text-anchor="middle" font-weight="600">443</text>
+
+  <rect x="608" y="452" width="286" height="24" rx="4" fill="#ffffff" stroke="#00a5c4" stroke-width="1"/>
+  <text x="751" y="469" font-size="13" fill="#00738a" text-anchor="middle" font-weight="600">4840 OPC UA — l'IT vient LIRE</text>
+
+  <rect x="590" y="630" width="300" height="25" rx="4" fill="#ffffff" stroke="#00a5c4" stroke-width="1.4"/>
+  <text x="740" y="648" font-size="13.5" fill="#00738a" text-anchor="middle" font-weight="700">4840 OPC UA — l'OT POUSSE ↑</text>
+
+  <!-- ===== Marqueurs de criticite par zone ===== -->
+  <rect x="450" y="150" width="6" height="58"  fill="#b9c7d4"/>
+  <rect x="70"  y="272" width="6" height="72"  fill="#b9c7d4"/>
+  <rect x="450" y="272" width="6" height="72"  fill="#7f9db8"/>
+  <rect x="830" y="272" width="6" height="72"  fill="#2e5c85"/>
+  <rect x="70"  y="522" width="6" height="72"  fill="#2e5c85"/>
+  <rect x="390" y="522" width="6" height="72"  fill="#2e5c85"/>
+  <rect x="730" y="522" width="6" height="72"  fill="#2e5c85"/>
+  <rect x="1010" y="522" width="6" height="72" fill="#2e5c85"/>
+  <rect x="380" y="766" width="6" height="68"  fill="#0f2740"/>
+  <rect x="110" y="880" width="6" height="68"  fill="#0f2740"/>
+  <rect x="650" y="880" width="6" height="68"  fill="#0f2740"/>
+  <rect x="1290" y="238" width="6" height="748" fill="#2e5c85"/>
+
+  <!-- ===== LEGENDE ===== -->
+  <line x1="40" y1="1104" x2="1570" y2="1104" stroke="#c9d4de" stroke-width="1"/>
+  <text x="40" y="1129" font-size="12" font-weight="700" fill="#0f2740" letter-spacing="1.6">LEGENDE</text>
+
+  <text x="140" y="1129" font-size="12.5" font-weight="700" fill="#5a6672">CRITICITE</text>
+  <rect x="238" y="1119" width="13" height="13" fill="#0f2740"/><text x="257" y="1130" font-size="12.5" fill="#0f2740">Vitale</text>
+  <rect x="310" y="1119" width="13" height="13" fill="#2e5c85"/><text x="329" y="1130" font-size="12.5" fill="#0f2740">Critique</text>
+  <rect x="396" y="1119" width="13" height="13" fill="#7f9db8"/><text x="415" y="1130" font-size="12.5" fill="#0f2740">Haute</text>
+  <rect x="472" y="1119" width="13" height="13" fill="#b9c7d4"/><text x="491" y="1130" font-size="12.5" fill="#0f2740">Moyenne</text>
+  <text x="140" y="1150" font-size="11.5" fill="#8a949e">Une zone = des equipements de meme criticite, donc de meme regime de protection.</text>
+  <text x="140" y="1168" font-size="11.5" fill="#8a949e">Criticite = impact d'une compromission sur la distribution d'eau potable.</text>
+
+  <text x="610" y="1129" font-size="12.5" font-weight="700" fill="#5a6672">FLUX</text>
+  <line x1="672" y1="1125" x2="712" y2="1125" stroke="#00a5c4" stroke-width="2.6" marker-end="url(#flc)"/>
+  <text x="720" y="1130" font-size="12.5" fill="#0f2740">Franchit une frontiere de zone — OPC UA authentifie et chiffre</text>
+  <line x1="672" y1="1148" x2="712" y2="1148" stroke="#2e5c85" stroke-width="2" marker-end="url(#fl)"/>
+  <text x="720" y="1153" font-size="12.5" fill="#0f2740">Flux interne a une zone — Modbus / IEC 104, jamais route entre zones</text>
+  <line x1="672" y1="1171" x2="712" y2="1171" stroke="#8a949e" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#flg)"/>
+  <text x="720" y="1176" font-size="12.5" fill="#0f2740">Journalisation vers Z9 — sens unique, jamais de retour</text>
+
+  <rect x="1245" y="1141" width="30" height="14" rx="7" fill="#a8202b"/>
+  <text x="1283" y="1152" font-size="12.5" fill="#0f2740">Interdiction explicite, journalisee et alertee</text>
+</svg>

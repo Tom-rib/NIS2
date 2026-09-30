@@ -1,7 +1,7 @@
 # 🧰 scripts/ — fichiers de configuration et scripts
 
 > Tous les fichiers de ce dossier sont **des modèles commentés**, écrits pour la maquette décrite
-> dans [`01_preparation.md`](../01_preparation.md) et pour l'architecture du
+> pour la maquette de test et pour l'architecture du
 > [bloc 3](../Documentation/job-3-architecture.md).
 >
 > 🔴 **Ils ne s'appliquent jamais tels quels en production.** Adresses, interfaces et noms
@@ -18,7 +18,7 @@
 | [`reseau/wireguard-site-distant.conf`](reseau/wireguard-site-distant.conf) | Tunnel VPN d'un réservoir ou d'une station de relevage | Bloc 3, zone Z8 |
 | [`pare-feu/nftables-segmentation.nft`](pare-feu/nftables-segmentation.nft) | Règles de filtrage complètes issues de la matrice de flux | Bloc 3, étapes 5 et 6 |
 | [`pare-feu/opnsense-regles.md`](pare-feu/opnsense-regles.md) | Les mêmes règles, en version interface graphique OPNsense | Maquette |
-| [`verification/test-segmentation.sh`](verification/test-segmentation.sh) | Teste automatiquement que le blocage fonctionne **et** que les flux légitimes passent | [`04_tests.md`](../04_tests.md) |
+| [`verification/test-segmentation.sh`](verification/test-segmentation.sh) | Teste automatiquement que le blocage fonctionne **et** que les flux légitimes passent | [bloc 3](../Documentation/job-3-architecture.md) |
 | [`verification/inventaire-passif.sh`](verification/inventaire-passif.sh) | Découverte **passive** du réseau OT, sans émettre un seul paquet | Écart E-08 |
 | [`sauvegarde/sauvegarde-3-2-1.sh`](sauvegarde/sauvegarde-3-2-1.sh) | Sauvegarde chiffrée avec vérification d'intégrité et rapport | Écart E-04 |
 | [`documentation/`](documentation/) | Régénération de `Documentation.md` et `Documentation.docx` à partir des livrables | Rendu |

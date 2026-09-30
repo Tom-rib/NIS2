@@ -30,7 +30,7 @@
 
 Deux conséquences directes sur la façon de travailler :
 
-1. **Constituer un dossier de preuves au fil de l'eau** (voir [`04_tests.md`](../../04_tests.md)),
+1. **Constituer un dossier de preuves au fil de l'eau** (voir [`scripts/verification/`](../../scripts/verification/)),
    pas la veille d'un contrôle.
 2. **Assumer les écarts non encore traités** : un plan d'action daté, validé par la direction, avec
    des jalons tenus, est infiniment mieux reçu qu'un discours de conformité totale démenti par la

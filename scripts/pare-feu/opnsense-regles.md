@@ -1,8 +1,7 @@
 # Règles de pare-feu — version OPNsense (maquette)
 
 > Les mêmes règles que [`nftables-segmentation.nft`](nftables-segmentation.nft), traduites pour
-> l'interface graphique **OPNsense** — la solution retenue pour la maquette de test décrite dans
-> [`01_preparation.md`](../../01_preparation.md).
+> l'interface graphique **OPNsense** — la solution retenue pour la maquette de test.
 >
 > Licence OPNsense : BSD 2-clauses.
 
