@@ -461,6 +461,7 @@ Trois principes la résument :
 | [`scripts/pare-feu/nftables-segmentation.nft`](../scripts/pare-feu/nftables-segmentation.nft) | Règles de filtrage complètes |
 | [`scripts/reseau/wireguard-site-distant.conf`](../scripts/reseau/wireguard-site-distant.conf) | Tunnel type d'un site distant |
 | [`scripts/verification/test-segmentation.sh`](../scripts/verification/test-segmentation.sh) | Script de test de la segmentation |
-| [`schemas/`](../schemas/) | Schémas avant / après |
+| [`schemas/architecture-avant.png`](../schemas/architecture-avant.png) | L'existant : réseau plat |
+| [`schemas/architecture-cible.svg`](../schemas/architecture-cible.svg) · [`.png`](../schemas/architecture-cible.png) | **La cible** : 9 zones, 2 pare-feu, DMZ, légende et niveaux de criticité |
 
 ⬅️ [Bloc 2 — Analyse d'écart](job-2-analyse-ecart.md) · ➡️ [Bloc 4 — Crise et notifications](job-4-crise-notifications.md)

@@ -75,6 +75,13 @@ scratchpad/
 /Documentation/slides-png.zip
 /Documentation/presentation-soutenance.pptx
 
+# Version Mermaid perimee de l'architecture cible : son placement automatique met
+# la DMZ sous la zone OT, ce qui contredit le message du bloc 3. Remplacee par
+# architecture-cible.svg, dont la mise en page est fixee a la main. Le fichier
+# reste en local comme trace de la demarche.
+/schemas/architecture-apres.mmd
+/schemas/architecture-apres.png
+
 # Preparation personnelle a l'oral : reponses aux questions du jury, indications
 # de jeu, arbitrages de soutenance. Ce n'est pas un livrable, et le publier
 # reviendrait a montrer au correcteur ce qu'on a choisi de ne pas dire.

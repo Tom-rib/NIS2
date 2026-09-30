@@ -5,28 +5,28 @@
 
 | Fichier | Contenu | Format |
 |---|---|---|
-| [`architecture-avant.mmd`](architecture-avant.mmd) · `.png` | L'existant : réseau plat, aucun cloisonnement | Mermaid + PNG |
-| [`architecture-cible.svg`](architecture-cible.svg) · `.png` | 🔴 **La cible, version présentation** — mise en page maîtrisée | SVG + PNG 2400 px |
-| [`architecture-apres.mmd`](architecture-apres.mmd) · `.png` | La cible, version Mermaid (source versionnable) | Mermaid + PNG |
+| [`architecture-avant.mmd`](architecture-avant.mmd) · `.png` | **L'existant** : réseau plat, aucun cloisonnement | Mermaid + PNG |
+| [`architecture-cible.svg`](architecture-cible.svg) · `.png` | 🔴 **La cible** : 9 zones, 2 pare-feu, DMZ industrielle — avec légende et niveaux de criticité | SVG + PNG 2560 px |
 | [`flux-notification.mmd`](flux-notification.mmd) · `.png` | Le processus de notification 24 h / 72 h / 1 mois | Mermaid + PNG |
 
-> ⚠️ **Pourquoi deux versions de l'architecture cible ?**
-> Le rendu automatique de Mermaid (`architecture-apres.png`) place la **DMZ tout en bas**, sous la
-> zone OT — parce que le flux « l'OT pousse vers la DMZ » tire la DMZ vers le bas dans son moteur de
-> placement. C'est exact sémantiquement, mais **ça contredit visuellement le message** : la DMZ doit
-> apparaître *entre* l'IT et l'OT.
-> ➡️ Pour toute présentation ou impression, utiliser **`architecture-cible.svg`**, dont la mise en
-> page est fixée à la main. Le fichier Mermaid reste utile comme source légère à versionner.
+> 💡 **Pourquoi la cible est en SVG et non en Mermaid.** Le placement automatique de Mermaid met
+> la **DMZ sous la zone OT** — le flux « l'OT pousse vers la DMZ » la tire vers le bas dans son
+> moteur. C'est exact sémantiquement, mais ça **contredit visuellement le message** : la DMZ doit
+> apparaître *entre* l'IT et l'OT, c'est tout son intérêt. Le SVG a donc une mise en page fixée à
+> la main. Les deux autres schémas restent en Mermaid, où le placement automatique convient.
 
 ### Régénérer les images
 
-```bash
-# Les diagrammes Mermaid (necessite Node ; utilise Edge plutot que de telecharger Chromium)
-npx -y @mermaid-js/mermaid-cli@11 -i schemas/flux-notification.mmd -o schemas/flux-notification.png -w 2400 -b white -p pptr-config.json
+Le PNG de l'architecture cible et tous les formats de la présentation se refont en une commande :
 
-# Le schema cible : SVG vers PNG haute definition
-msedge --headless=new --disable-gpu --force-device-scale-factor=1.5 --window-size=1600,1120 \
-       --screenshot=schemas/architecture-cible.png file:///.../schemas/architecture-cible.svg
+```bash
+python scripts/documentation/regenerer-presentation.py
+```
+
+Pour les deux diagrammes Mermaid, après modification d'un `.mmd` :
+
+```bash
+npx -y @mermaid-js/mermaid-cli@11 -i schemas/flux-notification.mmd -o schemas/flux-notification.png -w 2400 -b white
 ```
 
 ---
