@@ -21,7 +21,6 @@
 | [`verification/test-segmentation.sh`](verification/test-segmentation.sh) | Teste automatiquement que le blocage fonctionne **et** que les flux légitimes passent | [bloc 3](../Documentation/job-3-architecture.md) |
 | [`verification/inventaire-passif.sh`](verification/inventaire-passif.sh) | Découverte **passive** du réseau OT, sans émettre un seul paquet | Écart E-08 |
 | [`sauvegarde/sauvegarde-3-2-1.sh`](sauvegarde/sauvegarde-3-2-1.sh) | Sauvegarde chiffrée avec vérification d'intégrité et rapport | Écart E-04 |
-| [`documentation/`](documentation/) | Régénération de `Documentation.md` et `Documentation.docx` à partir des livrables | Rendu |
 
 ---
 

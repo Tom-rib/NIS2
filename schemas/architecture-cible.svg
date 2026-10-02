@@ -117,17 +117,18 @@
 
   <!-- ================= Z9 ADMINISTRATION ================= -->
   <rect x="1290" y="238" width="280" height="748" rx="6" fill="#f4f7fa" stroke="#2e5c85" stroke-width="1.8"/>
-  <text x="1430" y="268" font-size="14" font-weight="700" fill="#0f2740" text-anchor="middle">Z9 — Administration</text>
+  <text x="1430" y="268" font-size="14" font-weight="700" fill="#0f2740" text-anchor="middle">Z9 — Journalisation</text>
   <text x="1430" y="289" font-size="13" fill="#5a6672" text-anchor="middle">VLAN 240 · 10.240.0.0/24</text>
   <line x1="1312" y1="306" x2="1548" y2="306" stroke="#c9d4de" stroke-width="1"/>
-  <text x="1430" y="332" font-size="13" fill="#0f2740" text-anchor="middle">Collecteur de journaux</text>
-  <text x="1430" y="356" font-size="13" fill="#0f2740" text-anchor="middle">Serveurs NTP</text>
+  <text x="1430" y="332" font-size="13" fill="#0f2740" text-anchor="middle">Bastion d’administration</text>
+  <text x="1430" y="356" font-size="13" fill="#0f2740" text-anchor="middle">Collecteur de journaux · NTP</text>
   <text x="1430" y="380" font-size="13" fill="#0f2740" text-anchor="middle">Supervision de sécurité</text>
   <line x1="1312" y1="400" x2="1548" y2="400" stroke="#c9d4de" stroke-width="1"/>
   <text x="1430" y="428" font-size="12.5" fill="#5a6672" text-anchor="middle" font-style="italic">Reçoit de toutes les zones,</text>
-  <text x="1430" y="448" font-size="12.5" fill="#5a6672" text-anchor="middle" font-style="italic">n'émet vers aucune.</text>
-  <text x="1430" y="476" font-size="12.5" fill="#5a6672" text-anchor="middle">Un attaquant ne peut pas</text>
-  <text x="1430" y="496" font-size="12.5" fill="#5a6672" text-anchor="middle">y effacer ses traces.</text>
+  <text x="1430" y="448" font-size="12.5" fill="#5a6672" text-anchor="middle" font-style="italic">n'émet vers aucune. Seule</text>
+  <text x="1430" y="468" font-size="12.5" fill="#5a6672" text-anchor="middle" font-style="italic">sortie : le bastion, tracé.</text>
+  <text x="1430" y="500" font-size="12.5" fill="#5a6672" text-anchor="middle">Un attaquant ne peut pas</text>
+  <text x="1430" y="520" font-size="12.5" fill="#5a6672" text-anchor="middle">y effacer ses traces.</text>
 
   <line x1="1252" y1="300" x2="1286" y2="300" stroke="#8a949e" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#flg)"/>
   <line x1="1252" y1="545" x2="1286" y2="545" stroke="#8a949e" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#flg)"/>

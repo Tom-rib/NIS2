@@ -1,11 +1,11 @@
 # =============================================================================
-#  Ce depot ne contient que le rendu : le sujet, les livrables, et ce qui sert
-#  a y repondre. L'outillage, les brouillons et les artefacts regenerables
-#  restent en local.
+#  Ce depot contient LA REPONSE AU SUJET, et rien d'autre :
+#  le sujet, les quatre livrables, les schemas, le code technique.
 #
-#  Strategie : LISTE BLANCHE. Tout est exclu a la racine, puis reautorise au
-#  cas par cas. Pour publier un nouveau fichier a la racine, il faut donc
-#  ajouter une ligne "!" dans la section prevue plus bas.
+#  Tout ce qui sert a FABRIQUER le rendu (scripts de generation, sources HTML,
+#  outillage, brouillons, notes de travail) reste en local.
+#
+#  Strategie : LISTE BLANCHE. Tout est exclu, puis reautorise explicitement.
 # =============================================================================
 
 # --- Secrets : JAMAIS commites, a tous les niveaux ---------------------------
@@ -16,34 +16,26 @@
 *.key
 secrets/
 credentials.json
-.claude/mcp/ssh-admin/hosts.json
-.claude/mcp/ssh-admin/ssh-mcp-audit.log
 
-# --- Bruit systeme, editeurs, dependances, a tous les niveaux ----------------
+# --- Bruit systeme, editeurs, dependances ------------------------------------
 .DS_Store
 Thumbs.db
 .idea/
-.vscode/*
-!.vscode/extensions.json
+.vscode/
 *.swp
 __pycache__/
 *.pyc
 node_modules/
 .venv/
 venv/
-vendor/
-dist/
-build/
-out/
-target/
 *.log
 graphify-out/
 scratchpad/
 
 # =============================================================================
-#  RACINE : tout exclu, puis reautorise explicitement
-#  (exclut donc .claude/, .mcp.json, .env.example, CLAUDE.md,
-#   01_preparation.md a 05_annexes.md, et Documentation.md)
+#  RACINE : tout exclu, puis reautorise
+#  (exclut .claude/, CLAUDE.md, .mcp.json, .env.example, Cour/,
+#   01_preparation.md a 05_annexes.md, Documentation.md)
 # =============================================================================
 /*
 
@@ -56,33 +48,45 @@ scratchpad/
 !/NIS2 - KICK OFF.pdf
 !/NIS2_-_KICK_OFF.md
 
-# Le rendu consolide au format Word
+# Le rendu consolide, format Word
 !/Documentation.docx
 
-# Les quatre livrables, les schemas, les scripts, le cours de reference
+# Les livrables, les schemas, le code technique
 !/Documentation/
 !/schemas/
 !/scripts/
-!/Cour/
 
 # =============================================================================
-#  Exclusions a l'interieur des dossiers conserves
+#  A l'interieur des dossiers conserves : on retire l'atelier
 # =============================================================================
 
-# Artefacts regeneres par scripts/documentation/regenerer-presentation.py
-# (le PDF de la presentation, lui, reste publie)
+# Machinerie de generation : construit le rendu, n'en fait pas partie
+/scripts/documentation/
+
+# Sources HTML des documents : le PDF est le livrable, le HTML est l'outil
+/Documentation/presentation-soutenance.html
+/Documentation/annexes/annexes-soutenance.html
+
+# Doublon : depuis que les 7 annexes sont integrees au diaporama, ce PDF
+# separe ne sert plus a rien
+/Documentation/annexes/annexes-soutenance.pdf
+
+# Artefacts regenerables
 /Documentation/slides-png/
 /Documentation/slides-png.zip
 /Documentation/presentation-soutenance.pptx
 
-# Version Mermaid perimee de l'architecture cible : son placement automatique met
-# la DMZ sous la zone OT, ce qui contredit le message du bloc 3. Remplacee par
-# architecture-cible.svg, dont la mise en page est fixee a la main. Le fichier
-# reste en local comme trace de la demarche.
+# Preparation personnelle a l'oral : reponses aux questions du jury, indications
+# de jeu. Ce n'est pas un livrable, et le publier montrerait au correcteur ce
+# qu'on a choisi de ne pas dire. Toutes les versions sont exclues.
+/Documentation/notes-orateur-*
+
+# Maquette v2 du 11 septembre (26 pages) : structure abandonnee, avec les 7
+# annexes en pages separees au lieu d'etre integrees au raisonnement. Gardee
+# pour relecture, ce n'est pas le rendu.
+/Documentation/presentation-soutenance-v2.pdf
+
+# Version Mermaid perimee de l'architecture cible : son placement automatique
+# met la DMZ sous la zone OT, ce qui contredit le message du bloc 3
 /schemas/architecture-apres.mmd
 /schemas/architecture-apres.png
-
-# Preparation personnelle a l'oral : reponses aux questions du jury, indications
-# de jeu, arbitrages de soutenance. Ce n'est pas un livrable, et le publier
-# reviendrait a montrer au correcteur ce qu'on a choisi de ne pas dire.
-/Documentation/notes-orateur.md

@@ -25,9 +25,6 @@ Ce dossier contient **le rendu évalué**. Un fichier par bloc, lisible indépen
 | Document | Contenu |
 |---|---|
 | 🔴 **[presentation-soutenance.pdf](presentation-soutenance.pdf)** | **La présentation complète — 21 slides**, annexes intégrées dans le raisonnement |
-| [presentation-soutenance.html](presentation-soutenance.html) | La source, modifiable dans un éditeur de texte |
-| [annexes-soutenance.pdf](annexes/annexes-soutenance.pdf) | Les 7 tableaux de référence en 16:9, à ouvrir pendant les questions du jury |
-| [annexes-soutenance.html](annexes/annexes-soutenance.html) | La source du PDF ci-dessus |
 | [`../schemas/architecture-cible.png`](../schemas/architecture-cible.png) | Le schéma d'architecture, déjà intégré en slide 13 |
 | [`../schemas/flux-notification.png`](../schemas/flux-notification.png) | Le processus de notification, en complément |
 
@@ -58,6 +55,6 @@ et le PPTX.
 
 ⚠️ **Rappel important** : à la date de rédaction (10/09/2026), **la loi française de transposition
 n'est pas promulguée**. Toutes les obligations citées s'appuient sur le texte de la directive.
-Voir [`Cour/reglementation/00-calendrier-et-transposition.md`](../Cour/reglementation/00-calendrier-et-transposition.md).
+Voir la note de qualification, section calendrier.
 
 ⬅️ [Retour au README principal](../README.md)

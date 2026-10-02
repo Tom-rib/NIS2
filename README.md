@@ -34,13 +34,6 @@ notifier un incident en **24 h / 72 h / 1 mois**. Ce dépôt fait les quatre.
 2. **Le rendu bloc par bloc** — le tableau « Le rendu » ci-dessous, dans l'ordre 1 → 4.
 3. **Le cours** — si un article ou un concept technique demande une explication.
 
-### 📕 Le cours
-
-| Dossier | Contenu |
-|---|---|
-| [`Cour/reglementation/`](Cour/reglementation/) | **Un fichier par article de NIS2**, réécrit en français simple |
-| [`Cour/technique/`](Cour/technique/) | Les concepts techniques : IT vs OT, modèle de Purdue, VLAN, DMZ, VPN, SCADA, crise |
-
 ### 📗 Le rendu (réponse au sujet, job par job)
 
 | Bloc | Livrable attendu | Fichier |
@@ -58,9 +51,8 @@ notifier un incident en **24 h / 72 h / 1 mois**. Ce dépôt fait les quatre.
 |---|---|
 | [`Documentation.docx`](Documentation.docx) | Réponse complète au sujet d'un seul tenant, format Word — page de garde, sommaire automatique, à imprimer ou à déposer |
 
-> ⚙️ Ce fichier est **généré** à partir de `Documentation/`. Pour le mettre à jour : corriger le
-> livrable concerné, puis relancer les scripts de
-> [`scripts/documentation/`](scripts/documentation/). Ne jamais l'éditer à la main.
+> ⚙️ Ce fichier est **généré** à partir des livrables de `Documentation/`. Ne jamais l'éditer
+> à la main : corriger le livrable concerné, puis le regénérer.
 
 ### 🧰 Les fichiers techniques
 
@@ -104,7 +96,7 @@ promulguée** — le projet de loi « résilience des infrastructures critiques 
 cybersécurité » a été adopté par le Sénat les 11-12 mars 2025 et voté en commission spéciale à
 l'Assemblée nationale le 10 septembre 2025. Les décrets d'application suivront.
 👉 Toutes les obligations citées ici s'appuient donc sur **le texte de la directive**, pas sur un
-droit français qui n'existe pas encore. Voir [`Cour/reglementation/00-calendrier-et-transposition.md`](Cour/reglementation/00-calendrier-et-transposition.md).
+droit français qui n'existe pas encore.
 
 ---
 
