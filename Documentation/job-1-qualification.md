@@ -277,15 +277,26 @@ et renforcée par l'article 2(2), points (e) et (g).
 
 ### 10.3 Réserve de rédaction
 
-📙 À la date de cette note (**10 septembre 2026**), **la loi française de transposition n'est pas
+📙 À la date de cette note (**1er octobre 2026**), **la loi française de transposition n'est pas
 promulguée**. Le projet de loi « résilience des infrastructures critiques et renforcement de la
-cybersécurité » a été adopté par le Sénat les 11-12 mars 2025 et voté en commission spéciale à
-l'Assemblée nationale le 10 septembre 2025 ; les décrets suivront.
+cybersécurité » — dit **loi Résilience** — a été adopté par le Sénat les 11-12 mars 2025, voté en
+commission spéciale à l'Assemblée nationale en septembre 2025, et inscrit en **séance publique à
+partir du 7 octobre 2026** ; les décrets suivront.
 
-**Conséquence** : la présente note s'appuie sur le **texte de la directive**. Les seuils précis de
-qualification d'un incident significatif, les modalités exactes d'enregistrement et le calendrier
-d'application en France seront fixés par les textes nationaux. Une **revue de conformité est
-inscrite au plan d'actions**, déclenchée par leur publication.
+Deux faits sont intervenus entre-temps :
+
+- l'**ANSSI** a publié le **ReCyF** (Référentiel Cyber France) le **17 mars 2026**, précisément pour
+  que les entités concernées n'attendent pas la loi ;
+- la **Commission européenne a saisi la Cour de justice de l'Union européenne contre la France** le
+  **8 juillet 2026**, pour défaut de transposition dans le délai de l'article 41.
+
+**Conséquence** : la présente note s'appuie sur le **texte de la directive** et sur le **ReCyF**.
+Une directive non transposée ne crée pas d'obligation directement opposable à une régie — il n'y a
+pas d'effet direct horizontal. Mais **le contenu des obligations est fixé** ; seule la date à
+laquelle elles deviennent opposables reste à arrêter. Les seuils précis de qualification d'un
+incident significatif, les modalités exactes d'enregistrement et le calendrier d'application en
+France seront fixés par les textes nationaux. Une **revue de conformité est inscrite au plan
+d'actions**, déclenchée par leur publication.
 
 Cela ne justifie **aucun report** : les mesures techniques et organisationnelles nécessaires
 demandent 18 à 24 mois de mise en œuvre.

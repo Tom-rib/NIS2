@@ -84,7 +84,7 @@ explicitement autorisés, filtrés par un pare-feu.
 | **Z6** | Supervision OT | 210 | 10.210.0.0/24 | 🟣 **Vitale** | SCADA redondé, historian primaire, serveur d'alarmes | 3 |
 | **Z7** | Contrôle OT | 220 | 10.220.0.0/22 | 🟣 **Vitale** | ~350 automates, RTU des sites principaux, IHM locales | 1-2 |
 | **Z8** | Sites distants | 230 | 10.230.0.0/22 | 🟣 **Vitale** | Réservoirs, stations de relevage (VPN sur APN privé) | 1-2 |
-| **Z9** | Administration | 240 | 10.240.0.0/24 | 🔴 **Critique** | Bastion d'administration, collecteur de journaux, supervision, NTP | — |
+| **Z9** | Journalisation | 240 | 10.240.0.0/24 | 🔴 **Critique** | Collecteur de journaux, supervision, NTP, bastion d'administration | — |
 
 > 💡 **Convention d'adressage** : le 2ᵉ octet reprend le numéro de VLAN (VLAN 210 → 10.210.x.x).
 > Un an plus tard, on lit une adresse IP et on sait immédiatement dans quelle zone on se trouve.
@@ -138,7 +138,7 @@ flowchart TB
 
     PROC["NIVEAU 0 - PROCEDE<br/>Pompes, vannes, chloration, capteurs"]
 
-    ADM["Z9 - Administration<br/>VLAN 240 - 10.240.0.0/24<br/>Journaux, supervision, NTP"]
+    ADM["Z9 - Journalisation<br/>VLAN 240 - 10.240.0.0/24<br/>Journaux, supervision, NTP, bastion"]
 
     NET --> PORTAIL
     PORTAIL -->|443 uniquement| MET
@@ -193,8 +193,9 @@ INTERNET
 | NIVEAU 0  PROCEDE   Pompes, vannes, chloration, capteurs      |  Niveau 0
 +--------------------------------------------------------------+
 
-Z9 ADMINISTRATION  VLAN 240 : bastion, collecteur de journaux, NTP
-   -> recoit de TOUTES les zones, n'envoie vers AUCUNE (sauf administration via bastion)
+Z9 JOURNALISATION  VLAN 240 : collecteur de journaux, NTP, bastion d'administration
+   -> recoit de TOUTES les zones, n'envoie vers AUCUNE
+   -> seule sortie : le bastion, en session enregistree (F-11)
 ```
 
 ---
@@ -237,7 +238,7 @@ Z9 ADMINISTRATION  VLAN 240 : bastion, collecteur de journaux, NTP
 | D-05 | Z1 exposition | Z2, Z4 | tout | Un portail compromis n'atteint ni la bureautique ni les sauvegardes |
 | D-06 | Toute zone | Z4 sauvegarde | tout sauf agent de sauvegarde | 🔴 Protection des sauvegardes contre le chiffrement |
 | D-07 | Z5 DMZ | Z2, Z3 | tout (sens DMZ → IT) | La DMZ ne se connecte pas à l'IT : l'IT vient lire |
-| D-08 | Z9 administration | Internet | tout | La zone d'administration reste hors ligne |
+| D-08 | Z9 journalisation | Internet | tout | La zone de journalisation reste hors ligne |
 | D-09 | Z7 | Z6 | tout initié par un automate | Un automate compromis ne remonte pas vers le SCADA |
 | **D-10** | **any** | **any** | **tout** | 🔴 **DENY ALL journalisé — dernière règle de chaque interface** |
 
@@ -442,7 +443,8 @@ Un rendu honnête dit aussi ce qu'il ne fait pas.
 L'architecture proposée cloisonne l'IT et l'OT en **9 zones** de criticité homogène, séparées par
 **deux pare-feu en cascade** et une **DMZ industrielle** qui constitue le seul point de rencontre
 entre les deux mondes. Aucun flux direct entre la bureautique et l'industriel n'est autorisé, et le
-seul protocole franchissant une frontière de zone est **OPC UA**, authentifié et chiffré.
+seul protocole franchissant une frontière de zone est **OPC UA**, imposé en mode **SignAndEncrypt**
+— signé et chiffré ; en mode *None*, OPC UA n'apporterait aucune protection.
 
 Trois principes la résument :
 

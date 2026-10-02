@@ -90,13 +90,16 @@ Le projet distingue systématiquement trois natures d'information :
 | 📙 **Source** | Vient de l'ANSSI, de l'ENISA ou d'un texte officiel — le lien est donné |
 | 📕 **Hypothèse** | Choix de travail fait pour ce cas d'école (chiffres HydroRégie, dates, scénario) |
 
-**Point de vigilance important** (vérifié le 10/09/2026) : au niveau européen, NIS2 s'applique
+**Point de vigilance important** (vérifié le 01/10/2026) : au niveau européen, NIS2 s'applique
 depuis le **18 octobre 2024** (art. 41). En France, **la loi de transposition n'est pas encore
 promulguée** — le projet de loi « résilience des infrastructures critiques et renforcement de la
-cybersécurité » a été adopté par le Sénat les 11-12 mars 2025 et voté en commission spéciale à
-l'Assemblée nationale le 10 septembre 2025. Les décrets d'application suivront.
-👉 Toutes les obligations citées ici s'appuient donc sur **le texte de la directive**, pas sur un
-droit français qui n'existe pas encore.
+cybersécurité », dit **loi Résilience**, a été adopté par le Sénat les 11-12 mars 2025, voté en
+commission spéciale à l'Assemblée nationale en septembre 2025, et inscrit en **séance publique à
+partir du 7 octobre 2026**. Entre-temps, l'**ANSSI** a publié le **ReCyF** le 17 mars 2026, et la
+Commission européenne a **saisi la CJUE contre la France** le 8 juillet 2026 pour défaut de
+transposition.
+👉 Toutes les obligations citées ici s'appuient donc sur **le texte de la directive** et sur le
+ReCyF. Le contenu est fixé ; seule la date à laquelle il devient opposable reste à arrêter.
 
 ---
 
