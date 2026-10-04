@@ -64,21 +64,19 @@ scratchpad/
 # Machinerie de generation : construit le rendu, n'en fait pas partie
 /scripts/documentation/
 
-# Sources HTML des documents : le HTML est l'outil, pas le rendu
-/Documentation/presentation-soutenance.html
+# Source HTML des annexes autonomes : l'outil, pas le rendu
 /Documentation/annexes/annexes-soutenance.html
 
 # Doublon : depuis que les 7 annexes sont integrees au diaporama, ce PDF
 # separe ne sert plus a rien
 /Documentation/annexes/annexes-soutenance.pdf
 
-# Le diaporama lui-meme : c'est le support de l'oral, pas un livrable du sujet.
+# Le diaporama : c'est le support de l'oral, pas un livrable du sujet.
+# On n'en garde que deux fichiers, et ni l'un ni l'autre n'est publie :
+# le HTML (source, editee a la main) et le PPTX (produit, pour Canva).
 # Les quatre blocs sont deja repondus par les notes, les annexes et les schemas.
-# Il vit sur Canva ; le depot garde ce qui repond au sujet.
-/Documentation/presentation-soutenance.pdf
+/Documentation/presentation-soutenance.html
 /Documentation/presentation-soutenance.pptx
-/Documentation/slides-png/
-/Documentation/slides-png.zip
 
 # Preparation personnelle a l'oral : reponses aux questions du jury, indications
 # de jeu. Ce n'est pas un livrable, et le publier montrerait au correcteur ce

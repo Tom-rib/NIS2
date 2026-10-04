@@ -348,4 +348,4 @@ produit six actions correctives datées, présentées au COSSI le 20 avril 2027.
 ---
 
 ⬅️ [Bloc 3 — Architecture](job-3-architecture.md) · 📎 [Les notifications rédigées](annexes/) ·
-🏠 [Sommaire](README.md)
+🏠 [Sommaire du dépôt](../README.md)
