@@ -48,9 +48,12 @@ scratchpad/
 !/NIS2 - KICK OFF.pdf
 !/NIS2_-_KICK_OFF.md
 
-# Le rendu consolide : PDF pour lire et imprimer, Word pour annoter
+# Le rendu consolide : un seul format publie, le PDF. Le .docx reste en
+# local pour annoter, mais n'est pas un livrable.
 !/Documentation.pdf
-!/Documentation.docx
+
+# Le cours de revision (reglementation + technique)
+!/Cour/
 
 # Les livrables, les schemas, le code technique
 !/Documentation/
